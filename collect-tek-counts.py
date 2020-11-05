@@ -50,7 +50,7 @@ for (country_code, country_name) in potentially_participating_countries.items():
             if values[1] >= '2020-09-01':
                 total_lines.append("{},{},{},{}".format(values[1], values[0], values[2], values[3]))
 
-# sort lines by date (2nd column)
+# sort lines by date
 total_lines.sort()
 
 # print header and lines
