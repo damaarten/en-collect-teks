@@ -1,3 +1,7 @@
+# This Python script fetches Exposure Notification TEK count files for European Union countries from
+# Trinity College Dublin's website (https://down.dsg.cs.tcd.ie/tact/tek-counts) and combines
+# them into one CSV file, sorted by date.
+
 import requests
 from http import HTTPStatus
 
@@ -39,7 +43,6 @@ total_lines = []
 for (country_code, country_name) in potentially_participating_countries.items():
     response = requests.get(f"https://down.dsg.cs.tcd.ie/tact/tek-counts/{country_code.lower()}-tek-times.csv")
     if response.status_code == HTTPStatus.OK:
-        print('{} {}'.format(country_code, country_name))
         lines = response.content.decode('utf-8').splitlines()[1:]  # omit the CSV header line
         # filter out the dates before 01 sep 2020
         lines = [line for line in lines if line.split(',')[1] >= '2020-09-01']
@@ -47,8 +50,8 @@ for (country_code, country_name) in potentially_participating_countries.items():
 
 # sort lines by date (2nd column)
 total_lines.sort(key=lambda _line: _line.split(',')[1])
-f = open("total-tek-count.csv", "w")
-f.write("Country,Date,TEKs,Cases\n")
+
+# print header and lines
+print("Country,Date,TEKs,Cases")
 for line in total_lines:
-    f.write("{}\n".format(line))
-f.close()
+    print(line)
