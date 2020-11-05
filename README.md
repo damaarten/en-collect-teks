@@ -1,6 +1,9 @@
 This project fetches Exposure Notification TEK count files for European Union countries from
 Trinity College Dublin's website (https://down.dsg.cs.tcd.ie/tact/tek-counts) and combines
-them into one CSV file, sorted by date.
+them into one CSV file `tek-times.csv`, sorted by date.
+
+The `run.sh` script updates the `tek-times.csv` file and updates it here in this github repo.
+The file is accessible at https://raw.githubusercontent.com/damaarten/en-tek-count-efgs/main/tek-times.csv.
 
 # Installation
 Prerequisites:
@@ -14,5 +17,8 @@ cd en-tek-count-efgs
 /path/to/python3.X venv env
 pip install -r requirements.txt
 crontab -e
-# add /path/to/run.sh
+# add a job to run /path/to/run.sh at e.g. 0 * * * *
+
+# edit .get/config
+# add credentials with write access to the https://github.com/damaarten/en-tek-count-efgs repo
 ```    
