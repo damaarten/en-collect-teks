@@ -18,7 +18,7 @@ cd en-tek-count-efgs
 /path/to/python3.X venv env
 pip install -r requirements.txt
 
-# edit .get/config
+# edit .git/config
 # add credentials with write access to the https://github.com/damaarten/en-tek-count-efgs repo
 
 crontab -e
